@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyCast — Weather Forecast</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-icon">☀</span><span>SkyCast</span></a>
+      <div class="side-label">MENU</div>
+      <a class="nav-item active" href="#dashboard"><span>▦</span> Dashboard</a>
+      <a class="nav-item" href="#forecast"><span>◷</span> 7-day forecast</a>
+      <a class="nav-item" href="#history"><span>↻</span> Search history</a>
+      <div class="sidebar-bottom">
+        <div class="mini-weather">🌦️</div>
+        <strong>Weather, made simple.</strong>
+        <p>Plan your day with a little more confidence.</p>
+        <small>Data by Open-Meteo</small>
+      </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <div><p class="eyebrow">WEATHER OVERVIEW</p><h1>Good day, weather explorer <span>✦</span></h1><p class="muted">Here’s what’s happening outside.</p></div>
+        <div class="date-pill"><span>◷</span> <span id="todayLabel">Loading date…</span></div>
+      </header>
+
+      <form id="searchForm" class="search-bar">
+        <span class="search-icon">⌕</span>
+        <input id="cityInput" type="text" placeholder="Search city (e.g. Delhi, Mumbai, London)" value="Delhi" autocomplete="off" aria-label="City name">
+        <button type="submit" id="searchButton">Search <span>→</span></button>
+      </form>
+      <div id="message" class="message" role="status"></div>
+
+      <section class="hero-card">
+        <div class="hero-copy">
+          <div class="location-line"><span class="pin">●</span><span id="locationName">Delhi, India</span><span class="live-dot"></span><span class="live-text">LIVE FORECAST</span></div>
+          <p class="hero-condition" id="conditionText">Fetching current weather…</p>
+          <div class="temperature"><span id="temperature">--</span><sup>°C</sup></div>
+          <p class="feels">Feels like <strong id="feelsLike">--°</strong> · <span id="localTime">Local forecast</span></p>
+        </div>
+        <div class="hero-art" id="heroIcon" aria-hidden="true">🌤️</div>
+        <div class="hero-footer"><span>☀ &nbsp;Stay prepared for the day</span><span id="updatedLabel">Updated just now</span></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><h2>Today's highlights</h2><p class="muted">A quick look at the conditions</p></div><span class="tiny-badge">CURRENT WEATHER</span></div>
+        <div class="metrics-grid">
+          <article class="metric-card"><div class="metric-top"><span>Humidity</span><span class="metric-icon purple">◌</span></div><div class="metric-value"><span id="humidity">--</span><small>%</small></div><div class="metric-note">Relative humidity</div><div class="progress"><span id="humidityBar"></span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>Wind speed</span><span class="metric-icon blue">↗</span></div><div class="metric-value"><span id="wind">--</span><small> km/h</small></div><div class="metric-note">Near-surface wind</div><div class="metric-bottom-note">Measured at 10 metres</div></article>
+          <article class="metric-card"><div class="metric-top"><span>Precipitation</span><span class="metric-icon aqua">☂</span></div><div class="metric-value"><span id="precipitation">--</span><small> mm</small></div><div class="metric-note">Current precipitation</div><div class="metric-bottom-note">Rainfall at this time</div></article>
+          <article class="metric-card"><div class="metric-top"><span>Feels like</span><span class="metric-icon orange">♨</span></div><div class="metric-value"><span id="feelsMetric">--</span><small>°C</small></div><div class="metric-note">Apparent temperature</div><div class="metric-bottom-note">How it may feel outdoors</div></article>
+        </div>
+      </section>
+
+      <section class="section-block" id="forecast">
+        <div class="section-heading"><div><h2>7-day forecast</h2><p class="muted">Look ahead and plan your week</p></div><span class="forecast-label">NEXT 7 DAYS</span></div>
+        <div class="forecast-grid" id="forecastGrid">
+          <div class="forecast-placeholder">Search for a city to load its forecast.</div>
+        </div>
+      </section>
+
+      <section class="section-block" id="history">
+        <div class="section-heading"><div><h2>Recent searches</h2><p class="muted">Your latest weather lookups, saved locally</p></div><button class="text-button" id="refreshHistory">Refresh ↻</button></div>
+        <div class="history-card"><div class="history-head"><span>LOCATION</span><span>CONDITION</span><span>TEMPERATURE</span><span>SEARCHED AT</span></div><div id="historyRows"><p class="empty-history">Your recent searches will appear here.</p></div></div>
+      </section>
+      <footer>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a> · Built with Python's standard library and MySQL</footer>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
